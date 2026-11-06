@@ -55,7 +55,7 @@ La guía **se publica en GitHub Pages**, pero el ejemplo dentro de `ejemplo-vite
 
 ## React Bits
 
-Se integraron archivos de código reales desde `react-bits-main.zip` suministrado: `ShinyText`, `AnimatedContent` y se incluye `SpotlightCard` para ampliaciones. No se copia el repositorio entero, que contiene recursos de gran peso. La UI respeta reducción de movimiento. Código de React Bits sujeto a sus propias condiciones: https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md .
+Se integraron componentes oficiales desde `react-bits-main.zip`: `ShinyText`, `AnimatedContent`, `SpotlightCard`, `ClickSpark`, `GradientText`, `TextType`, `StarBorder`, `GlareHover`, `Magnet` y `FadeContent`. No se copia el repositorio entero, que contiene recursos de gran peso. La UI respeta reducción de movimiento. Código de React Bits sujeto a sus propias condiciones: https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md .
 
 ## Seguridad y límites
 
