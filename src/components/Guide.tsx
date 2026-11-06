@@ -476,14 +476,14 @@ export default function Guide() {
                     </div>
                     <div className="filters-segment">
                       <RubberSegment
-                      equalSlots={false}
+                        equalSlots={false}
                         aria-label="Filtrar capítulos"
                         value={category}
                         onChange={v => setCategory(v)}
                         items={['Todos', 'Inicio', 'Preparación', 'Supabase', 'Vercel', 'Producción', 'Extra']}
                         trackColor="#eef0f8"
                         thumbColor="#6355d8"
-                        textColor="#6b7488"
+                        textColor="#182239"
                         activeTextColor="#ffffff"
                       />
                     </div>
@@ -713,7 +713,7 @@ export default function Guide() {
                       items={['Todos', ...new Set(faqs.map(f => f.type))]}
                       trackColor="#eef0f8"
                       thumbColor="#6355d8"
-                      textColor="#6b7488"
+                      textColor="#182239"
                       activeTextColor="#ffffff"
                     />
                   </div>

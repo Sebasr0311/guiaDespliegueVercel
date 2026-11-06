@@ -60,7 +60,9 @@
 
 .slide-commit__text {
   grid-area: 1 / 1;
-  color: color-mix(in srgb, var(--sc-ink) 45%, transparent);
+  color: var(--sc-text, #ffffff);
+  opacity: 0.9;
+  font-weight: 600;
   transition:
     opacity 200ms ease,
     filter 200ms ease;

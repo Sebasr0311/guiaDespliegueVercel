@@ -294,3 +294,45 @@
   .content-wrap{padding-bottom:84px}
   .spotlight-card.lesson-card{padding:16px}
 }
+
+/* =========================================================================
+   Contraste y visibilidad de controles interactivos y simulador
+   ========================================================================= */
+
+/* Reto interactivo (DeployChallenge) */
+.dc-cardh{color:#182239;font-weight:800}
+.dc-field span{color:#2a3348;font-weight:700}
+.dc-facts{color:#2f374a}
+.dc-facts code{color:#2b2670;background:#ebe9fa;border:1px solid #d9d4f5}
+.dc-check{color:#1e2638;font-weight:600}
+.dc-logh{color:#b6bdd1}
+.dc-logh small{color:#9da5bc}
+.dc-empty{color:#9098af}
+
+/* Recorrido guiado de las 5 fases (Simulador) */
+.sim-milestones{gap:9px}
+.milestone{color:#27314a !important;font-weight:600 !important;border-color:#dbe0eb !important;background:#fff !important;transition:border-color .15s,background .15s,color .15s}
+.milestone > span{background:#edf0f7 !important;color:#323d53 !important;font-weight:800 !important}
+.milestone:hover{background:#f8f7ff !important;border-color:#cdc6f7 !important;color:#4c3ebd !important}
+.milestone.active{color:#4433bd !important;background:#f3f0ff !important;border-color:#b9abf8 !important;box-shadow:0 2px 8px rgba(99,85,216,0.12)}
+.milestone.active > span{background:#6355d8 !important;color:#fff !important}
+.milestone.passed > span{background:#def7ec !important;color:#0d7a4e !important}
+.milestone.passed{border-color:#ccefe0 !important}
+
+/* Pantalla simulada del navegador */
+.sim-address{background:#edf1f7 !important;color:#2b3447 !important;font-weight:600 !important}
+.sim-windowmenu{color:#616c82 !important}
+.sim-label{color:#4b556b !important;font-weight:800 !important}
+.sim-row{color:#1f283d !important;font-weight:500 !important}
+.sim-index{color:#5b667e !important;font-weight:700 !important}
+.sim-guide > p{color:#434d61 !important}
+.sim-bottom{color:#3f495d !important}
+
+/* Opciones de evaluación (Quiz) */
+.quiz-questiontitle b{color:#182239;font-weight:700}
+.quiz-option{color:#242c3e !important;font-weight:500 !important;border-color:#d9dde8 !important;transition:border-color .15s,background .15s}
+.quiz-option:hover:not(:disabled){border-color:#beb3f5 !important;background:#faf9ff !important}
+.quiz-option.picked{border-color:#7f6de3 !important;background:#f4f1ff !important;color:#4535ba !important;font-weight:600 !important}
+.radio-dot{border-color:#8e96a8 !important}
+.quiz-option.picked .radio-dot{border-color:#6355d8 !important}
+

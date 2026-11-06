@@ -99,7 +99,16 @@ function Choice({ label, value, options, onChange }: { label: string; value: str
   return (
     <div className="dc-field">
       <span>{label}</span>
-      <GlideSelect ariaLabel={label} options={options} value={value} onChange={onChange} accentColor="#6355d8" surfaceColor="#ffffff" textColor="#182239" />
+      <GlideSelect
+        ariaLabel={label}
+        options={options}
+        value={value}
+        onChange={onChange}
+        accentColor="#6355d8"
+        surfaceColor="#ffffff"
+        highlightColor="#eeeaff"
+        textColor="#182239"
+      />
     </div>
   );
 }
@@ -217,6 +226,7 @@ export default function DeployChallenge() {
                 items={[{ value: 'publishable', label: 'sb_publishable_…' }, { value: 'secret', label: 'sb_secret_…' }]}
                 chipColor="#eef0f8"
                 activeColor="#6355d8"
+                textColor="#182239"
                 activeTextColor="#ffffff"
               />
             </div>
@@ -227,6 +237,8 @@ export default function DeployChallenge() {
               color="#182239"
               fillColor="#6355d8"
               checkColor="#ffffff"
+              fontSize={13}
+              boxSize={20}
               checked={config.vercelJson}
               onChange={c => set('vercelJson', c)}
             />
@@ -239,7 +251,9 @@ export default function DeployChallenge() {
                 label="O desliza para desplegar"
                 doneLabel="Ready"
                 errorLabel="Error en el deploy"
+                trackColor="#1c2033"
                 handleColor="#6355d8"
+                textColor="#ffffff"
                 successColor="#16a36a"
                 dangerColor="#d93a4a"
                 onConfirm={runDeploy}

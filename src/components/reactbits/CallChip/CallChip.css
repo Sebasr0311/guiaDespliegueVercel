@@ -26,8 +26,10 @@
   background: var(--cc-surface);
   color: var(--cc-color);
   font-size: var(--cc-font);
+  font-weight: 600;
   line-height: 1;
   white-space: nowrap;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--cc-color) 16%, transparent);
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;

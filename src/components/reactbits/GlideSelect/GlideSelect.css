@@ -31,13 +31,14 @@
   height: var(--gs-chip);
   margin: 0;
   padding: 0 8px 0 10px;
-  border: 0;
+  border: 1px solid color-mix(in srgb, var(--gs-text) 18%, transparent);
   border-radius: var(--gs-inner-radius);
   background: var(--gs-surface);
   color: var(--gs-text);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   font-family: inherit;
   font-size: var(--gs-font);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   cursor: pointer;
   outline: none;
@@ -46,7 +47,9 @@
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   transition:
+    border-color 140ms ease,
     background-color 100ms ease,
+    box-shadow 140ms ease,
     transform 160ms var(--gs-ease-out);
 }
 
@@ -56,12 +59,15 @@
 
 @media (hover: hover) and (pointer: fine) {
   .glide-select__trigger:not(:disabled):hover {
-    background: color-mix(in srgb, var(--gs-highlight) 60%, var(--gs-surface));
+    border-color: color-mix(in srgb, var(--gs-text) 32%, transparent);
+    background: color-mix(in srgb, var(--gs-highlight) 50%, var(--gs-surface));
   }
 }
 
 .glide-select__trigger[aria-expanded='true'] {
-  background: color-mix(in srgb, var(--gs-highlight) 60%, var(--gs-surface));
+  border-color: var(--gs-accent);
+  background: color-mix(in srgb, var(--gs-highlight) 50%, var(--gs-surface));
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--gs-accent) 25%, transparent);
 }
 
 .glide-select__trigger:not(:disabled):active {
@@ -99,9 +105,10 @@
   width: var(--gs-menu-w);
   min-width: 100%;
   padding: 4px;
+  border: 1px solid color-mix(in srgb, var(--gs-text) 16%, transparent);
   border-radius: var(--gs-radius);
   background: var(--gs-surface);
-  box-shadow: 0 4px 16px color-mix(in srgb, #000 22%, transparent);
+  box-shadow: 0 10px 30px rgba(16, 20, 36, 0.12);
   transform-origin: var(--gs-origin);
   opacity: 0;
   transform: scale(0.95);

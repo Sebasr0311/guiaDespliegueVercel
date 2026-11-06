@@ -10,8 +10,8 @@
   --rs-font: 13px;
   --rs-pad: 14px;
   --rs-min: 44px;
-  --rs-idle: 0.7;
-  --rs-hover: 0.9;
+  --rs-idle: 0.88;
+  --rs-hover: 1;
   --rs-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
 
   position: relative;
@@ -22,6 +22,7 @@
   padding: var(--rs-inset);
   border-radius: var(--rs-radius);
   background: var(--rs-track);
+  box-shadow: inset 0 0 0 1px #d6d9e8;
   font-family: inherit;
   touch-action: pan-x pan-y;
   user-select: none;
@@ -55,7 +56,7 @@
   opacity: var(--rs-idle);
   font: inherit;
   font-size: var(--rs-font);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;

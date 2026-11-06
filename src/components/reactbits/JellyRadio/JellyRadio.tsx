@@ -95,7 +95,7 @@ const JellyRadio: React.FC<JellyRadioProps> = ({
   onChange,
   chipColor = '#27272a',
   activeColor = '#f5f5f5',
-  textColor = '#f5f5f5',
+  textColor,
   activeTextColor = '#18181b',
   size = 'md',
   gap = 8,
@@ -235,6 +235,9 @@ const JellyRadio: React.FC<JellyRadioProps> = ({
     chipRefs.current[next]?.focus();
   };
 
+  const isLightChip = chipColor.startsWith('#f') || chipColor.startsWith('#e') || chipColor === 'white' || chipColor.startsWith('rgb(2') || chipColor.startsWith('rgba(2');
+  const resolvedTextColor = textColor ?? (isLightChip ? '#182239' : '#f5f5f5');
+
   return (
     <div
       ref={groupRef}
@@ -246,7 +249,7 @@ const JellyRadio: React.FC<JellyRadioProps> = ({
         {
           '--jr-chip': chipColor,
           '--jr-active': activeColor,
-          '--jr-text': textColor,
+          '--jr-text': resolvedTextColor,
           '--jr-active-text': activeTextColor,
           '--jr-gap': `${gap}px`,
           '--jr-radius': `${radius}px`,
