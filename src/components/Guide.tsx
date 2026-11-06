@@ -39,6 +39,9 @@ import Dock from '@/components/reactbits/Dock/Dock';
 import { Screen } from '@/components/Screens';
 import DeployChallenge from '@/components/DeployChallenge';
 
+const GUIDE_PDF_NAME = 'Guia_Despliegue_Vercel_React_Vite_TS.pdf';
+const GUIDE_PDF_URL = `${process.env.NEXT_PUBLIC_BASE_PATH || ''}/${GUIDE_PDF_NAME}`;
+
 const DarkVeil = dynamic(() => import('@/components/reactbits/DarkVeil/DarkVeil'), { ssr: false });
 
 const icons: Record<string, typeof Rocket> = {
@@ -332,6 +335,10 @@ export default function Guide() {
                 </HoldButton>
               </div>
             )}
+            <a className="sidebar-pdf" href={GUIDE_PDF_URL} download={GUIDE_PDF_NAME}>
+              <FileText size={16} />
+              <span><b>Descargar guía PDF</b><small>React + Vite + TS · Vercel</small></span>
+            </a>
             <div className="sidebar-brandnote"><ShieldCheck size={14} /> Sin cuenta ni registro · avances locales</div>
           </div>
         </aside>
@@ -382,7 +389,7 @@ export default function Guide() {
                           <Play size={17} fill="currentColor" /> {started ? 'Continuar aprendiendo' : 'Comenzar el recorrido'} <ArrowRight size={17} />
                         </StarBorder>
                         <button className="btn outline-light" onClick={() => setView('simulador')}><MonitorPlay size={17} /> Probar simulador</button>
-                        <a className="btn outline-light" href={`${process.env.NEXT_PUBLIC_BASE_PATH || ''}/guia-react-vercel-supabase.pdf`} download><FileText size={17} /> Descargar PDF</a>
+                        <a className="btn outline-light" href={GUIDE_PDF_URL} download={GUIDE_PDF_NAME}><FileText size={17} /> Descargar guía PDF</a>
                       </div>
                       <div className="hero-stats">
                         <div><strong><CountUp to={lessons.length} duration={1.2} /></strong><span>capítulos prácticos</span></div>
@@ -747,6 +754,7 @@ export default function Guide() {
             <footer className="site-footer">
               <div className="footer-logo"><span className="brand-logo small"><Layers3 size={16} /></span><b>deploylab.</b><span>Aprende · construye · publica.</span></div>
               <div className="footer-links">
+                <a href={GUIDE_PDF_URL} download={GUIDE_PDF_NAME}>Guía PDF</a>
                 <a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer">Vercel Docs</a>
                 <a href="https://supabase.com/docs" target="_blank" rel="noopener noreferrer">Supabase Docs</a>
                 <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener noreferrer">GitHub Pages</a>

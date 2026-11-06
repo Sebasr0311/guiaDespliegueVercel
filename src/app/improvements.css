@@ -228,6 +228,14 @@
 .dc-loader-badge{margin-left:8px;display:inline-flex;align-items:center}
 .dc-result-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:6px}
 
+/* Descarga de la guía PDF */
+.sidebar-pdf{margin-top:14px;display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e2ddff;border-radius:11px;background:#f6f4ff;color:#4e44bb;transition:background .2s,border-color .2s}
+.sidebar-pdf:hover{background:#ece8ff;border-color:#cfc6ff}
+.sidebar-pdf svg{flex-shrink:0}
+.sidebar-pdf span{display:flex;flex-direction:column;min-width:0}
+.sidebar-pdf b{font-size:11px}
+.sidebar-pdf small{font-size:9px;color:#8a86b5;margin-top:2px}
+
 /* Mobile Dock */
 .mobile-dock{display:none}
 @media(max-width:650px){
