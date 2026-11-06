@@ -235,19 +235,28 @@ const RubberSegment: React.FC<RubberSegmentProps> = ({
   const handlePointerDown = (e: React.PointerEvent<HTMLButtonElement>, i: number) => {
     if (disabled || drag.current || e.button !== 0) return;
     box.current = trackRef.current?.getBoundingClientRect() ?? null;
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId);
-    } catch {}
     const x = localX(e);
     const onThumb = draggable && x >= edgeL.get() && x <= edgeR.get();
-    drag.current = { id: e.pointerId, x0: x, slot: i, onThumb, live: false, offset: 0, w: 0, hist: [[e.timeStamp, x]] };
     if (onThumb) {
+      try {
+        e.currentTarget.setPointerCapture(e.pointerId);
+      } catch {}
       clearTimeout(handoff.current);
       gen.current += 1;
       edgeL.stop();
       edgeR.stop();
     } else if (!reduce) {
       e.currentTarget.dataset.pressed = '';
+    }
+    drag.current = { id: e.pointerId, x0: x, slot: i, onThumb, live: false, offset: 0, w: 0, hist: [[e.timeStamp, x]] };
+  };
+
+  const handleClick = (i: number) => {
+    if (disabled) return;
+    if (i !== committed.current) {
+      const from = committed.current;
+      commit(i);
+      travel(from, i);
     }
   };
 
@@ -383,6 +392,7 @@ const RubberSegment: React.FC<RubberSegmentProps> = ({
           disabled={disabled}
           className="rubber-segment__item"
           onPointerDown={e => handlePointerDown(e, i)}
+          onClick={() => handleClick(i)}
           onKeyDown={handleKeyDown}
         >
           {item.icon}

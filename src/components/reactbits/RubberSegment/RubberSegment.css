@@ -23,7 +23,7 @@
   border-radius: var(--rs-radius);
   background: var(--rs-track);
   font-family: inherit;
-  touch-action: pan-y;
+  touch-action: pan-x pan-y;
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;

@@ -476,6 +476,7 @@ export default function Guide() {
                     </div>
                     <div className="filters-segment">
                       <RubberSegment
+                      equalSlots={false}
                         aria-label="Filtrar capítulos"
                         value={category}
                         onChange={v => setCategory(v)}
@@ -662,7 +663,7 @@ export default function Guide() {
                 <section className="single-view">
                   <div className="single-header">
                     <span className="eyebrow">PRACTICA SIN CREDENCIALES</span>
-                    <h1><BlurText text="Simula tu primer despliegue." animateBy="words" className="single-h1" /></h1>
+                    <div className="single-title" role="heading" aria-level={1}><BlurText text="Simula tu primer despliegue." animateBy="words" className="single-h1" /></div>
                     <p>Practica las decisiones de un despliegue real sin tocar tus cuentas. Primero el reto; abajo, el recorrido guiado de las cinco fases.</p>
                   </div>
                   <DeployChallenge />
@@ -700,11 +701,12 @@ export default function Guide() {
                 <section className="single-view">
                   <div className="single-header">
                     <span className="eyebrow">CENTRO DE SOLUCIONES</span>
-                    <h1><BlurText text="Los errores también enseñan." animateBy="words" className="single-h1" /></h1>
+                    <div className="single-title" role="heading" aria-level={1}><BlurText text="Los errores también enseñan." animateBy="words" className="single-h1" /></div>
                     <p>Encuentra la explicación probable, identifica qué revisar y evita soluciones inseguras.</p>
                   </div>
                   <div className="faq-category-row">
                     <RubberSegment
+                      equalSlots={false}
                       aria-label="Filtrar preguntas frecuentes"
                       value={faqFilter}
                       onChange={v => setFaqFilter(v)}
@@ -743,7 +745,7 @@ export default function Guide() {
                 <section className="single-view">
                   <div className="single-header">
                     <span className="eyebrow">DEMUESTRA LO APRENDIDO</span>
-                    <h1><BlurText text="Valida tus conocimientos." animateBy="words" className="single-h1" /></h1>
+                    <div className="single-title" role="heading" aria-level={1}><BlurText text="Valida tus conocimientos." animateBy="words" className="single-h1" /></div>
                     <p>Un cuestionario interactivo para reforzar lo esencial antes de presentar un despliegue real.</p>
                   </div>
                   <QuizPanel />
