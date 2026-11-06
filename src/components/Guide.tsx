@@ -7,7 +7,7 @@ import {
   ChevronLeft, ChevronRight, CircleHelp, Cloud, Code2, Copy, Database, ExternalLink,
   FileText, Github, GraduationCap, KeyRound, Layers3,
   Lightbulb, ListChecks, LockKeyhole, Menu, MonitorPlay, Play, Rocket,
-  Search, ShieldCheck, Sparkles, Terminal, Trophy, X, Zap, AlertTriangle,
+  Search, ShieldCheck, Sparkles, Terminal, Trophy, X, XCircle, Zap, AlertTriangle,
   ClipboardCheck, Compass, Settings2, RotateCcw
 } from 'lucide-react';
 import { faqs, lessons, quiz, type Snippet } from '@/data/lessons';
@@ -158,7 +158,35 @@ function SimulatedScreen({ index }: { index: number }) {
 function QuizPanel() {
   const [answers, setAnswers] = useState<Record<number, number>>({});
   const [checked, setChecked] = useState(false);
+  const [attempted, setAttempted] = useState(false);
   const score = quiz.reduce((n, q, i) => n + (answers[i] === q.answer ? 1 : 0), 0);
+
+  const missingIndices = useMemo(() => {
+    return quiz.map((_, i) => i).filter(i => answers[i] === undefined);
+  }, [answers]);
+
+  const handleAction = () => {
+    if (checked) {
+      setAnswers({});
+      setChecked(false);
+      setAttempted(false);
+      return;
+    }
+
+    if (missingIndices.length > 0) {
+      setAttempted(true);
+      const firstMissing = missingIndices[0];
+      const el = document.getElementById(`quiz-q-${firstMissing}`);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+      return;
+    }
+
+    setAttempted(false);
+    setChecked(true);
+  };
+
   return (
     <div className="assessment">
       <div className="assessment-top">
@@ -181,35 +209,78 @@ function QuizPanel() {
           <span>{checked ? 'respuestas correctas' : 'tu resultado'}</span>
         </div>
       </div>
-      {quiz.map((q, i) => (
-        <div key={q.q} className="quiz-question">
-          <div className="quiz-questiontitle"><span>{String(i + 1).padStart(2, '0')}</span><b>{q.q}</b></div>
-          <div className="quiz-options">
-            {q.options.map((o, j) => (
-              <button
-                key={o}
-                className={`quiz-option ${answers[i] === j ? 'picked' : ''} ${checked && j === q.answer ? 'correct' : ''} ${checked && answers[i] === j && j !== q.answer ? 'incorrect' : ''}`}
-                onClick={() => { if (!checked) setAnswers(a => ({ ...a, [i]: j })); }}
-                disabled={checked}
-              >
-                <span className="radio-dot" />{o}
-              </button>
-            ))}
-          </div>
-          {checked && <div className="quiz-why"><Lightbulb size={16} />{q.why}</div>}
-        </div>
-      ))}
-      <div className="quiz-actions">
-        <ClickSpark sparkColor={['#6355d8', '#16a36a']} sparkCount={10}>
-          <button
-            className="btn primary"
-            disabled={Object.keys(answers).length !== quiz.length && !checked}
-            onClick={() => { if (checked) { setAnswers({}); setChecked(false); } else setChecked(true); }}
+      {quiz.map((q, i) => {
+        const isUnanswered = attempted && !checked && answers[i] === undefined;
+        const isCorrect = checked && answers[i] === q.answer;
+        const isIncorrect = checked && answers[i] !== q.answer;
+
+        return (
+          <div
+            id={`quiz-q-${i}`}
+            key={q.q}
+            className={`quiz-question ${isUnanswered ? 'unanswered' : ''} ${isCorrect ? 'is-correct' : ''} ${isIncorrect ? 'is-incorrect' : ''}`}
           >
-            {checked ? <RotateCcw size={17} /> : <ClipboardCheck size={17} />} {checked ? 'Reintentar' : 'Calificar respuestas'}
-          </button>
-        </ClickSpark>
-        <span>{Object.keys(answers).length}/{quiz.length} respondidas</span>
+            <div className="quiz-questiontitle">
+              <div className="quiz-qhead">
+                <span className="quiz-qnum">{String(i + 1).padStart(2, '0')}</span>
+                <b>{q.q}</b>
+              </div>
+              {checked && (
+                isCorrect ? (
+                  <span className="quiz-status-badge correct" aria-label="Pregunta respondida correctamente">
+                    <CheckCircle2 size={15} /> Correcta
+                  </span>
+                ) : (
+                  <span className="quiz-status-badge incorrect" aria-label="Pregunta respondida incorrectamente">
+                    <XCircle size={15} /> Incorrecta
+                  </span>
+                )
+              )}
+              {isUnanswered && (
+                <span className="quiz-status-badge missing" aria-label="Pregunta pendiente por responder">
+                  <AlertTriangle size={14} /> Falta responder
+                </span>
+              )}
+            </div>
+            <div className="quiz-options">
+              {q.options.map((o, j) => (
+                <button
+                  key={o}
+                  className={`quiz-option ${answers[i] === j ? 'picked' : ''} ${checked && j === q.answer ? 'correct' : ''} ${checked && answers[i] === j && j !== q.answer ? 'incorrect' : ''}`}
+                  onClick={() => {
+                    if (!checked) {
+                      setAnswers(a => ({ ...a, [i]: j }));
+                    }
+                  }}
+                  disabled={checked}
+                >
+                  <span className="radio-dot" />{o}
+                </button>
+              ))}
+            </div>
+            {checked && <div className="quiz-why"><Lightbulb size={16} />{q.why}</div>}
+          </div>
+        );
+      })}
+      <div className="quiz-actions-wrap">
+        <div className="quiz-actions">
+          <ClickSpark sparkColor={['#6355d8', '#16a36a']} sparkCount={10}>
+            <button className="btn primary" onClick={handleAction}>
+              {checked ? <RotateCcw size={17} /> : <ClipboardCheck size={17} />} {checked ? 'Reintentar' : 'Calificar respuestas'}
+            </button>
+          </ClickSpark>
+          <span className="quiz-count">{Object.keys(answers).length} de {quiz.length} respondidas</span>
+        </div>
+        {attempted && missingIndices.length > 0 && !checked && (
+          <div className="quiz-alert" role="alert">
+            <AlertTriangle size={16} />
+            <span>
+              {missingIndices.length === 1
+                ? `Te falta responder la pregunta ${missingIndices[0] + 1}. Selecciónala para poder calificar.`
+                : `Te faltan ${missingIndices.length} preguntas por responder (${missingIndices.map(i => `#${i + 1}`).join(', ')}).`}
+            </span>
+          </div>
+        )}
       </div>
       {checked && (
         <p className="quiz-result">
