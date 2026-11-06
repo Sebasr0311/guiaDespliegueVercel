@@ -8,6 +8,8 @@
 6. Agrega las mismas variables `VITE_SUPABASE_URL` y `VITE_SUPABASE_PUBLISHABLE_KEY` en Environment Variables → Production.
 7. Pulsa Deploy. Deberían aparecer los dos registros de demostración. No uses secret keys ni datos reales para esta prueba.
 
+**TypeScript:** `src/vite-env.d.ts` declara los tipos de `import.meta.env`. No lo borres: sin él `npm run build` falla con *Property 'env' does not exist on type 'ImportMeta'*.
+
 **Nota:** la clave publishable es visible en el navegador por diseño; la protección efectiva depende de permisos mínimos y Row Level Security.
 
 Si agregas React Router más adelante, deja `vercel.json` incluido: resuelve la recarga de rutas internas en una SPA Vite. En proyectos multi-página o con funciones propias, ajusta esta regla a su arquitectura.

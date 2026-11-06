@@ -15,6 +15,15 @@ Plataforma educativa e interactiva sobre **React + Vite + Vercel + Supabase**, l
 
 **Importante:** los proyectos de los alumnos usan **React + Vite**. El uso de **Next.js en esta carpeta es únicamente para construir la plataforma educativa** como exportación estática a GitHub Pages.
 
+## Novedades de esta versión
+
+- **Corregido:** la guía no compilaba (el `tsconfig.json` raíz incluía la carpeta del ejemplo) y el ejemplo `ejemplo-vite-supabase` tampoco (faltaba `src/vite-env.d.ts`, así que fallaría también en Vercel).
+- **Pantallas paso a paso:** 16 pantallas ilustradas con marcadores numerados dentro de las lecciones (GitHub, Supabase, VS Code, Vercel, DevTools). Son recreaciones didácticas, no capturas oficiales.
+- **Vista de lección propia:** al abrir un capítulo ya no se vuelve al inicio de la página; la lección ocupa la pantalla y tiene botón para regresar.
+- **Reto de despliegue:** en el simulador, el estudiante configura Framework, Root Directory, comandos y variables, pulsa Deploy y ve el log y el error que habría producido Vercel.
+- **Contenido nuevo:** integración de Supabase del Marketplace de Vercel (usa `NEXT_PUBLIC_`, no sirve para Vite), Data API desactivada, reinicio de `npm run dev` tras editar `.env.local`, error de `ImportMeta`, mayúsculas en imports. Cuatro preguntas frecuentes y dos preguntas de quiz más.
+- El capítulo 12 queda marcado como **Para expositores** (publicar esta guía en GitHub Pages).
+
 ## Inicio local
 
 ```bash
@@ -55,7 +64,15 @@ La guía **se publica en GitHub Pages**, pero el ejemplo dentro de `ejemplo-vite
 
 ## React Bits
 
-Se integraron componentes oficiales desde `react-bits-main.zip`: `ShinyText`, `AnimatedContent`, `SpotlightCard`, `ClickSpark`, `GradientText`, `TextType`, `StarBorder`, `GlareHover`, `Magnet` y `FadeContent`. No se copia el repositorio entero, que contiene recursos de gran peso. La UI respeta reducción de movimiento. Código de React Bits sujeto a sus propias condiciones: https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md .
+Se integraron los 43 componentes curados de **React Bits** (`src/components/reactbits/`), incluyendo:
+- **Hero y encabezados:** `DarkVeil` (WebGL con carga diferida `ssr: false`), `RotatingText`, `StarBorder`, `CountUp`, `TextType`, `SplitText`, `GradientText`, `BlurText` y `ShinyText`.
+- **Arquitectura y resumen:** `TrueFocus`, `MagicBento`, `SpotlightCard` y `AnimatedContent`.
+- **Filtros, controles y navegación:** `RubberSegment`, `Counter`, `HoldButton`, `Dock`, `Magnet` y `FadeContent`.
+- **Lector de lección:** `WarmTooltip` (con soporte SSR), `FlipCard`, `GlareHover`, `SpringCheck`, `ClickSpark`, `FuseButton` y `SwipeToast`.
+- **Simulador de despliegue (`DeployChallenge`):** `GlideSelect`, `JellyRadio`, `SlideCommit`, `CallChip`, `LatticeLoader`, `SplitFlapText` y `StatusMark`.
+- **Página 404 (`not-found.tsx`):** `GlitchText` y `LetterGlitch` (`ssr: false`).
+
+La UI respeta `prefers-reduced-motion`. Código de React Bits sujeto a sus propias condiciones: https://github.com/DavidHDev/react-bits/blob/main/LICENSE.md .
 
 ## Seguridad y límites
 
