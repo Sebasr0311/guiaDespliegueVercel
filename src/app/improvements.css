@@ -149,6 +149,8 @@
 
 /* ===== Integración React Bits (Suite Completa) ===== */
 .hero-veil{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.55}
+/* Keep hero text readable even when the WebGL veil renders bright */
+.hero-veil::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,#141838f2 0%,#1c1f4ad9 45%,#2a2560a6 100%)}
 .hero-rotator-wrap{display:inline-flex;align-items:center;vertical-align:bottom}
 .hero-rotating{color:#b6bdfc;display:inline-flex}
 .hero-cta-star{border-radius:12px}
@@ -365,3 +367,8 @@
 }
 
 
+
+/* ===== Botón de presentación (topbar) ===== */
+.top-present{display:inline-flex;align-items:center;gap:8px;padding:9px 15px;border-radius:999px;background:linear-gradient(120deg,#6d5ce8,#3ecaba);color:#fff;font-size:11px;font-weight:800;box-shadow:0 8px 20px #6d5ce833;transition:transform .2s,box-shadow .2s;white-space:nowrap}
+.top-present:hover{transform:translateY(-1px);box-shadow:0 12px 26px #6d5ce84d}
+@media(max-width:650px){.top-present{padding:8px 11px;font-size:10px}.live-indicator{display:none}}

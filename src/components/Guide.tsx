@@ -2,13 +2,14 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
 import {
   ArrowRight, ArrowLeft, ArrowUpRight, BookOpen, Check, CheckCircle2, ChevronDown,
   ChevronLeft, ChevronRight, CircleHelp, Cloud, Code2, Copy, Database, ExternalLink,
   FileText, Github, GraduationCap, KeyRound, Layers3,
   Lightbulb, ListChecks, LockKeyhole, Menu, MonitorPlay, Play, Rocket,
   Search, ShieldCheck, Sparkles, Terminal, Trophy, X, XCircle, Zap, AlertTriangle,
-  ClipboardCheck, Compass, Settings2, RotateCcw
+  ClipboardCheck, Compass, Settings2, RotateCcw, Presentation
 } from 'lucide-react';
 import { faqs, lessons, quiz, type Snippet } from '@/data/lessons';
 import ShinyText from '@/components/reactbits/ShinyText';
@@ -423,6 +424,7 @@ export default function Guide() {
             </span>
             <div className="topbar-right">
               <span className="live-indicator"><i /> <ShinyText text="GUÍA ACTUALIZADA · NOV 2026" color="#788094" shineColor="#554ad4" speed={4} /></span>
+              <Link className="top-present" href="/presentacion/"><Presentation size={16} /> Ver presentación</Link>
               <a className="top-link" href="https://vercel.com/docs/git" target="_blank" rel="noopener noreferrer">Documentación <ArrowUpRight size={15} /></a>
             </div>
           </div>
@@ -460,6 +462,7 @@ export default function Guide() {
                           <Play size={17} fill="currentColor" /> {started ? 'Continuar aprendiendo' : 'Comenzar el recorrido'} <ArrowRight size={17} />
                         </StarBorder>
                         <button className="btn outline-light" onClick={() => setView('simulador')}><MonitorPlay size={17} /> Probar simulador</button>
+                        <Link className="btn outline-light" href="/presentacion/"><Presentation size={17} /> Ver diapositivas</Link>
                         <a className="btn outline-light" href={GUIDE_PDF_URL} download={GUIDE_PDF_NAME}><FileText size={17} /> Descargar guía PDF</a>
                       </div>
                       <div className="hero-stats">
